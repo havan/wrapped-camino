@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@adraffy/ens-normalize/-/ens-normalize-1.10.1.tgz#63430d04bd8c5e74f8d7d049338f1cd9d4f02069"
   integrity sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==
 
+"@colors/colors@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
+  integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
+
 "@ethereumjs/rlp@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@ethereumjs/rlp/-/rlp-4.0.1.tgz#626fabfd9081baab3d0a3074b0c7ecaf674aaa41"
@@ -658,6 +663,11 @@
     "@nomicfoundation/solidity-analyzer-linux-x64-gnu" "0.1.2"
     "@nomicfoundation/solidity-analyzer-linux-x64-musl" "0.1.2"
     "@nomicfoundation/solidity-analyzer-win32-x64-msvc" "0.1.2"
+
+"@openzeppelin/contracts@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-5.2.0.tgz#bd020694218202b811b0ea3eec07277814c658da"
+  integrity sha512-bxjNie5z89W1Ea0NZLZluFh8PrFNn9DH8DQlujEok2yjsOlraUPKID5p1Wk3qdNbf6XkQ1Os2RvfiHrrXLHWKA==
 
 "@scure/base@~1.1.0", "@scure/base@~1.1.6":
   version "1.1.9"
@@ -1362,6 +1372,15 @@ cli-table3@^0.5.0:
     string-width "^2.1.1"
   optionalDependencies:
     colors "^1.1.2"
+
+cli-table3@^0.6.0:
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/cli-table3/-/cli-table3-0.6.5.tgz#013b91351762739c16a9567c21a04632e449bf2f"
+  integrity sha512-+W/5efTR7y5HRD7gACw9yQjqMVvEMLBHmboM/kPWam+H+Hmyrgjh6YncVKK122YZkXrLudzTuAukUw9FnMf7IQ==
+  dependencies:
+    string-width "^4.2.0"
+  optionalDependencies:
+    "@colors/colors" "1.5.0"
 
 cliui@^7.0.2:
   version "7.0.4"
@@ -2139,7 +2158,7 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
-handlebars@^4.0.1:
+handlebars@^4.0.1, handlebars@^4.7.7:
   version "4.7.8"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.8.tgz#41c42c18b1be2365439188c77c6afae71c0cd9e9"
   integrity sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==
@@ -2150,6 +2169,15 @@ handlebars@^4.0.1:
     wordwrap "^1.0.0"
   optionalDependencies:
     uglify-js "^3.1.4"
+
+hardhat-contract-sizer@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/hardhat-contract-sizer/-/hardhat-contract-sizer-2.10.0.tgz#72646f43bfe50e9a5702c9720c9bc3e77d93a2c9"
+  integrity sha512-QiinUgBD5MqJZJh1hl1jc9dNnpJg7eE/w4/4GEnrcmZJJTDbVFNe3+/3Ep24XqISSkYxRz36czcPHKHd/a0dwA==
+  dependencies:
+    chalk "^4.0.0"
+    cli-table3 "^0.6.0"
+    strip-ansi "^6.0.0"
 
 hardhat-gas-reporter@^1.0.8:
   version "1.0.10"
@@ -2899,10 +2927,23 @@ prelude-ls@~1.1.2:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==
 
+prettier-plugin-solidity@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-solidity/-/prettier-plugin-solidity-1.4.2.tgz#d4f6173674e73a29731a8c79c45ab6f5246310df"
+  integrity sha512-VVD/4XlDjSzyPWWCPW8JEleFa8JNKFYac5kNlMjVXemQyQZKfpekPMhFZSePuXB6L+RixlFvWe20iacGjFYrLw==
+  dependencies:
+    "@solidity-parser/parser" "^0.19.0"
+    semver "^7.6.3"
+
 prettier@^2.3.1:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
+
+prettier@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.4.2.tgz#a5ce1fb522a588bf2b78ca44c6e6fe5aa5a2b13f"
+  integrity sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -3152,6 +3193,11 @@ semver@^7.3.4:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.0.tgz#9c6fe61d0c6f9fa9e26575162ee5a9180361b09c"
   integrity sha512-DrfFnPzblFmNrIZzg5RzHegbiRWg7KMR7btwi2yjHwx06zsUbO5g613sVwEV7FTwmzJu+Io0lJe2GJ3LxqpvBQ==
 
+semver@^7.6.3:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.1.tgz#abd5098d82b18c6c81f6074ff2647fd3e7220c9f"
+  integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
+
 serialize-javascript@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-6.0.2.tgz#defa1e055c83bf6d59ea805d8da862254eb6a6c2"
@@ -3266,6 +3312,11 @@ solc@0.8.26:
     semver "^5.5.0"
     tmp "0.0.33"
 
+solidity-ast@^0.4.38:
+  version "0.4.59"
+  resolved "https://registry.yarnpkg.com/solidity-ast/-/solidity-ast-0.4.59.tgz#290a2815aef70a61092591ab3e991da080ae5931"
+  integrity sha512-I+CX0wrYUN9jDfYtcgWSe+OAowaXy8/1YQy7NS4ni5IBDmIYBq7ZzaP/7QqouLjzZapmQtvGLqCaYgoUWqBo5g==
+
 solidity-coverage@^0.8.0:
   version "0.8.14"
   resolved "https://registry.yarnpkg.com/solidity-coverage/-/solidity-coverage-0.8.14.tgz#db9bfcc10e3bc369fc074b35b267d665bcc6ae2e"
@@ -3290,6 +3341,14 @@ solidity-coverage@^0.8.0:
     semver "^7.3.4"
     shelljs "^0.8.3"
     web3-utils "^1.3.6"
+
+solidity-docgen@^0.6.0-beta.36:
+  version "0.6.0-beta.36"
+  resolved "https://registry.yarnpkg.com/solidity-docgen/-/solidity-docgen-0.6.0-beta.36.tgz#9c76eda58580fb52e2db318c22fe3154e0c09dd1"
+  integrity sha512-f/I5G2iJgU1h0XrrjRD0hHMr7C10u276vYvm//rw1TzFcYQ4xTOyAoi9oNAHRU0JU4mY9eTuxdVc2zahdMuhaQ==
+  dependencies:
+    handlebars "^4.7.7"
+    solidity-ast "^0.4.38"
 
 source-map-support@^0.5.13:
   version "0.5.21"
