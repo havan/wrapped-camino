@@ -10,9 +10,7 @@ import { Address } from "@openzeppelin/contracts/utils/Address.sol";
  * @title WrappedCAM
  * @dev ERC20 token that represents wrapped CAM. Users can deposit native CAM
  * and receive WCAM tokens, which can be redeemed (burned) in exchange for native
- * CAM.
- *
- * Also includes additional logic to prevent WCAM tokens from being transferred
+ * CAM. Also includes additional logic to prevent WCAM tokens from being transferred
  * directly to the WCAM contract itself.
  */
 contract WrappedCAM is ERC20, ERC20Permit {
