@@ -60,6 +60,5 @@ module.exports = {
     docgen: {
         path: "./docs",
         pages: "single",
-        runOnCompile: true,
     },
 };
