@@ -15,7 +15,7 @@ directly to the WCAM contract itself._
 ### Deposit
 
 ```solidity
-event Deposit(address from, uint256 value)
+event Deposit(address from, address to, uint256 value)
 ```
 
 Emitted when a deposit is made.
@@ -25,12 +25,13 @@ Emitted when a deposit is made.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | from | address | The address that initiated the deposit. |
+| to | address | The address that received the deposit. |
 | value | uint256 | The amount of native CAM deposited. |
 
 ### Withdrawal
 
 ```solidity
-event Withdrawal(address from, uint256 value)
+event Withdrawal(address from, address to, uint256 value)
 ```
 
 Emitted when a withdrawal is made.
@@ -40,6 +41,7 @@ Emitted when a withdrawal is made.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | from | address | The address that initiated the withdrawal. |
+| to | address | The address that received the withdrawal. |
 | value | uint256 | The amount of native CAM withdrawn. |
 
 ### CannotSendWCAMToThisContract
@@ -73,6 +75,20 @@ _Users call this function with native CAM via the payable mechanism.
 The contract mints WCAM tokens to the sender corresponding to the deposit,
 and emits a Deposit event._
 
+### depositTo
+
+```solidity
+function depositTo(address to) external payable
+```
+
+Deposit native CAM and mint WCAM tokens to `to` address.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| to | address | The address to receive the minted WCAM tokens. |
+
 ### withdraw
 
 ```solidity
@@ -91,6 +107,39 @@ CAM back to the sender. Emits a Withdrawal event._
 | ---- | ---- | ----------- |
 | amount | uint256 | The amount of WCAM tokens to burn (and equivalent native CAM to withdraw). |
 
+### withdrawTo
+
+```solidity
+function withdrawTo(address to, uint256 amount) external
+```
+
+Withdraw native CAM by burning caller's WCAM tokens,
+sending the CAM to the `to` address.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| to | address | The address which will receive the native CAM. |
+| amount | uint256 | The amount of WCAM tokens to burn. |
+
+### withdrawFrom
+
+```solidity
+function withdrawFrom(address account, address to, uint256 amount) external
+```
+
+Withdraw native CAM by burning WCAM tokens from `account` (using allowance)
+and sending the CAM to the `to` address.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| account | address | The address from which the tokens will be burned. |
+| to | address | The address which will receive the native CAM. |
+| amount | uint256 | The amount of WCAM tokens to burn. Requirements: - The caller must have an allowance for `account`’s tokens of at least `amount`. |
+
 ### receive
 
 ```solidity
@@ -104,7 +153,7 @@ _Automatically triggers deposit() when contract receives native token_
 ### transfer
 
 ```solidity
-function transfer(address recipient, uint256 amount) public returns (bool)
+function transfer(address to, uint256 amount) public returns (bool)
 ```
 
 Overrides the transfer function of ERC20 tokens.
@@ -115,7 +164,7 @@ _Prevents sending WCAM tokens directly to the WCAM contract by reverting._
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| recipient | address | The address to which tokens would be sent. |
+| to | address | The address to which tokens would be sent. |
 | amount | uint256 | The amount of tokens to send. |
 
 #### Return Values
@@ -127,7 +176,7 @@ _Prevents sending WCAM tokens directly to the WCAM contract by reverting._
 ### transferFrom
 
 ```solidity
-function transferFrom(address sender, address recipient, uint256 amount) public returns (bool)
+function transferFrom(address sender, address to, uint256 amount) public returns (bool)
 ```
 
 Overrides the transferFrom function of ERC20 tokens.
@@ -139,7 +188,7 @@ _Prevents sending WCAM tokens directly to the WCAM contract by reverting._
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | sender | address | The address from which tokens are sent. |
-| recipient | address | The address to which tokens are sent. |
+| to | address | The address to which tokens are sent. |
 | amount | uint256 | The amount of tokens to send. |
 
 #### Return Values
