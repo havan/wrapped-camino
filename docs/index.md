@@ -2,6 +2,11 @@
 
 ## WrappedCAM
 
+WrappedCAM is an ERC20-based token that represents wrapped CAM. This
+smart contract allows users to deposit native CAM tokens and receive WCAM tokens
+in return. Conversely, WCAM tokens can be redeemed (burned) in exchange for their
+equivalent value in native CAM.
+
 _ERC20 token that represents wrapped CAM. Users can deposit native CAM
 and receive WCAM tokens, which can be redeemed (burned) in exchange for native
 CAM. Also includes additional logic to prevent WCAM tokens from being transferred

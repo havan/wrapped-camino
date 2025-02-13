@@ -8,6 +8,10 @@ import { Address } from "@openzeppelin/contracts/utils/Address.sol";
 
 /**
  * @title WrappedCAM
+ * @notice WrappedCAM is an ERC20-based token that represents wrapped CAM. This
+ * smart contract allows users to deposit native CAM tokens and receive WCAM tokens
+ * in return. Conversely, WCAM tokens can be redeemed (burned) in exchange for their
+ * equivalent value in native CAM.
  * @dev ERC20 token that represents wrapped CAM. Users can deposit native CAM
  * and receive WCAM tokens, which can be redeemed (burned) in exchange for native
  * CAM. Also includes additional logic to prevent WCAM tokens from being transferred
@@ -19,16 +23,18 @@ contract WrappedCAM is ERC20, ERC20Permit {
     /**
      * @notice Emitted when a deposit is made.
      * @param from The address that initiated the deposit.
+     * @param to The address that received the deposit.
      * @param value The amount of native CAM deposited.
      */
-    event Deposit(address indexed from, uint256 value);
+    event Deposit(address indexed from, address indexed to, uint256 value);
 
     /**
      * @notice Emitted when a withdrawal is made.
      * @param from The address that initiated the withdrawal.
+     * @param to The address that received the withdrawal.
      * @param value The amount of native CAM withdrawn.
      */
-    event Withdrawal(address indexed from, uint256 value);
+    event Withdrawal(address indexed from, address indexed to, uint256 value);
 
     /// @notice Error to prevent sending WCAM tokens to the contract itself.
     error CannotSendWCAMToThisContract();
@@ -48,7 +54,20 @@ contract WrappedCAM is ERC20, ERC20Permit {
      */
     function deposit() public payable {
         _mint(msg.sender, msg.value);
-        emit Deposit(msg.sender, msg.value);
+        emit Deposit(msg.sender, msg.sender, msg.value);
+    }
+
+    /**
+     * @notice Deposit native CAM and mint WCAM tokens to `to` address.
+     * @param to The address to receive the minted WCAM tokens.
+     */
+    function depositTo(address to) external payable {
+        if (to == address(this)) {
+            revert CannotSendWCAMToThisContract();
+        }
+        // `_mint` function will fail if the `to` is the zero address.
+        _mint(to, msg.value);
+        emit Deposit(msg.sender, to, msg.value);
     }
 
     /**
@@ -61,7 +80,50 @@ contract WrappedCAM is ERC20, ERC20Permit {
     function withdraw(uint256 amount) external {
         _burn(msg.sender, amount);
         payable(msg.sender).sendValue(amount);
-        emit Withdrawal(msg.sender, amount);
+        emit Withdrawal(msg.sender, msg.sender, amount);
+    }
+
+    /**
+     * @notice Withdraw native CAM by burning caller's WCAM tokens,
+     * sending the CAM to the `to` address.
+     * @param to The address which will receive the native CAM.
+     * @param amount The amount of WCAM tokens to burn.
+     */
+    function withdrawTo(address to, uint256 amount) external {
+        if (to == address(this)) {
+            revert CannotSendWCAMToThisContract();
+        }
+        // Fail if the `to` is the zero address.
+        if (to == address(0)) {
+            revert ERC20InvalidReceiver(to);
+        }
+        _burn(msg.sender, amount);
+        payable(to).sendValue(amount);
+        emit Withdrawal(msg.sender, to, amount);
+    }
+
+    /**
+     * @notice Withdraw native CAM by burning WCAM tokens from `account` (using allowance)
+     * and sending the CAM to the `to` address.
+     * @param account The address from which the tokens will be burned.
+     * @param to The address which will receive the native CAM.
+     * @param amount The amount of WCAM tokens to burn.
+     *
+     * Requirements:
+     * - The caller must have an allowance for `account`’s tokens of at least `amount`.
+     */
+    function withdrawFrom(address account, address to, uint256 amount) external {
+        if (to == address(this)) {
+            revert CannotSendWCAMToThisContract();
+        }
+        // Fail if the `to` is the zero address.
+        if (to == address(0)) {
+            revert ERC20InvalidReceiver(to);
+        }
+        _spendAllowance(account, msg.sender, amount);
+        _burn(account, amount);
+        payable(to).sendValue(amount);
+        emit Withdrawal(account, to, amount);
     }
 
     /**
@@ -75,29 +137,29 @@ contract WrappedCAM is ERC20, ERC20Permit {
     /**
      * @notice Overrides the transfer function of ERC20 tokens.
      * @dev Prevents sending WCAM tokens directly to the WCAM contract by reverting.
-     * @param recipient The address to which tokens would be sent.
+     * @param to The address to which tokens would be sent.
      * @param amount The amount of tokens to send.
      * @return A boolean value indicating whether the operation succeeded.
      */
-    function transfer(address recipient, uint256 amount) public override returns (bool) {
-        if (recipient == address(this)) {
+    function transfer(address to, uint256 amount) public override returns (bool) {
+        if (to == address(this)) {
             revert CannotSendWCAMToThisContract();
         }
-        return super.transfer(recipient, amount);
+        return super.transfer(to, amount);
     }
 
     /**
      * @notice Overrides the transferFrom function of ERC20 tokens.
      * @dev Prevents sending WCAM tokens directly to the WCAM contract by reverting.
      * @param sender The address from which tokens are sent.
-     * @param recipient The address to which tokens are sent.
+     * @param to The address to which tokens are sent.
      * @param amount The amount of tokens to send.
      * @return A boolean value indicating whether the operation succeeded.
      */
-    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
-        if (recipient == address(this)) {
+    function transferFrom(address sender, address to, uint256 amount) public override returns (bool) {
+        if (to == address(this)) {
             revert CannotSendWCAMToThisContract();
         }
-        return super.transferFrom(sender, recipient, amount);
+        return super.transferFrom(sender, to, amount);
     }
 }
