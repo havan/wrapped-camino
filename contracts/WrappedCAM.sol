@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Compatible with OpenZeppelin Contracts ^5.0.0
-pragma solidity ^0.8.22;
+pragma solidity ^0.8.24;
 
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import { ERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
@@ -12,9 +11,7 @@ import { Address } from "@openzeppelin/contracts/utils/Address.sol";
  * smart contract allows users to deposit native CAM tokens and receive WCAM tokens
  * in return. Conversely, WCAM tokens can be redeemed (burned) in exchange for their
  * equivalent value in native CAM.
- * @dev ERC20 token that represents wrapped CAM. Users can deposit native CAM
- * and receive WCAM tokens, which can be redeemed (burned) in exchange for native
- * CAM. Also includes additional logic to prevent WCAM tokens from being transferred
+ * @dev Also includes additional logic to prevent WCAM tokens from being transferred
  * directly to the WCAM contract itself.
  */
 contract WrappedCAM is ERC20, ERC20Permit {
@@ -44,7 +41,7 @@ contract WrappedCAM is ERC20, ERC20Permit {
      * @dev Initializes the ERC20 "Wrapped CAM" token with symbol "WCAM" and sets
      * up the EIP-2612 permit mechanism using ERC20Permit.
      */
-    constructor() ERC20("Wrapped CAM", "WCAM") ERC20Permit("Wrapped CAM") {}
+    constructor() ERC20("Test Wrapped CAM", "testWCAM") ERC20Permit("Wrapped CAM") {}
 
     /**
      * @notice Deposits native CAM and mints corresponding WCAM tokens.
