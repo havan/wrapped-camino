@@ -4,7 +4,7 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
 module.exports = buildModule("WrappedCAMModule", (m) => {
-  const wrappedCAM = m.contract("WrappedCAM");
+    const wrappedCAM = m.contract("WrappedCAM");
 
-  return { wrappedCAM };
+    return { wrappedCAM };
 });

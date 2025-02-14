@@ -22,11 +22,11 @@ Emitted when a deposit is made.
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| from | address | The address that initiated the deposit. |
-| to | address | The address that received the deposit. |
-| value | uint256 | The amount of native CAM deposited. |
+| Name  | Type    | Description                             |
+| ----- | ------- | --------------------------------------- |
+| from  | address | The address that initiated the deposit. |
+| to    | address | The address that received the deposit.  |
+| value | uint256 | The amount of native CAM deposited.     |
 
 ### Withdrawal
 
@@ -38,11 +38,11 @@ Emitted when a withdrawal is made.
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| from | address | The address that initiated the withdrawal. |
-| to | address | The address that received the withdrawal. |
-| value | uint256 | The amount of native CAM withdrawn. |
+| Name  | Type    | Description                                |
+| ----- | ------- | ------------------------------------------ |
+| from  | address | The address that initiated the withdrawal. |
+| to    | address | The address that received the withdrawal.  |
+| value | uint256 | The amount of native CAM withdrawn.        |
 
 ### CannotSendWCAMToThisContract
 
@@ -85,9 +85,9 @@ Deposit native CAM and mint WCAM tokens to `to` address.
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| to | address | The address to receive the minted WCAM tokens. |
+| Name | Type    | Description                                    |
+| ---- | ------- | ---------------------------------------------- |
+| to   | address | The address to receive the minted WCAM tokens. |
 
 ### withdraw
 
@@ -103,8 +103,8 @@ CAM back to the sender. Emits a Withdrawal event._
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+| Name   | Type    | Description                                                                |
+| ------ | ------- | -------------------------------------------------------------------------- |
 | amount | uint256 | The amount of WCAM tokens to burn (and equivalent native CAM to withdraw). |
 
 ### withdrawTo
@@ -118,10 +118,10 @@ sending the CAM to the `to` address.
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| to | address | The address which will receive the native CAM. |
-| amount | uint256 | The amount of WCAM tokens to burn. |
+| Name   | Type    | Description                                    |
+| ------ | ------- | ---------------------------------------------- |
+| to     | address | The address which will receive the native CAM. |
+| amount | uint256 | The amount of WCAM tokens to burn.             |
 
 ### withdrawFrom
 
@@ -134,11 +134,11 @@ and sending the CAM to the `to` address.
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| account | address | The address from which the tokens will be burned. |
-| to | address | The address which will receive the native CAM. |
-| amount | uint256 | The amount of WCAM tokens to burn. Requirements: - The caller must have an allowance for `account`’s tokens of at least `amount`. |
+| Name    | Type    | Description                                                                                                                       |
+| ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| account | address | The address from which the tokens will be burned.                                                                                 |
+| to      | address | The address which will receive the native CAM.                                                                                    |
+| amount  | uint256 | The amount of WCAM tokens to burn. Requirements: - The caller must have an allowance for `account`’s tokens of at least `amount`. |
 
 ### receive
 
@@ -162,16 +162,16 @@ _Prevents sending WCAM tokens directly to the WCAM contract by reverting._
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| to | address | The address to which tokens would be sent. |
-| amount | uint256 | The amount of tokens to send. |
+| Name   | Type    | Description                                |
+| ------ | ------- | ------------------------------------------ |
+| to     | address | The address to which tokens would be sent. |
+| amount | uint256 | The amount of tokens to send.              |
 
 #### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | bool | A boolean value indicating whether the operation succeeded. |
+| Name | Type | Description                                                 |
+| ---- | ---- | ----------------------------------------------------------- |
+| [0]  | bool | A boolean value indicating whether the operation succeeded. |
 
 ### transferFrom
 
@@ -185,15 +185,14 @@ _Prevents sending WCAM tokens directly to the WCAM contract by reverting._
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+| Name   | Type    | Description                             |
+| ------ | ------- | --------------------------------------- |
 | sender | address | The address from which tokens are sent. |
-| to | address | The address to which tokens are sent. |
-| amount | uint256 | The amount of tokens to send. |
+| to     | address | The address to which tokens are sent.   |
+| amount | uint256 | The amount of tokens to send.           |
 
 #### Return Values
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| [0] | bool | A boolean value indicating whether the operation succeeded. |
-
+| Name | Type | Description                                                 |
+| ---- | ---- | ----------------------------------------------------------- |
+| [0]  | bool | A boolean value indicating whether the operation succeeded. |
